@@ -1,62 +1,56 @@
-Spaceship SHIP = new Spaceship();
-Star [] STARS = new Star[400];
-ArrayList <Asteroid> ASTER = new ArrayList<Asteroid>();
-ArrayList <Bullet> PEWPEW = new ArrayList<Bullet>();
+Spaceship gabe = new Spaceship();
+Star [] leung = new Star[200];
+ArrayList <Asteroid> caleb = new ArrayList<Asteroid>();
+ArrayList <Bullet> dylan = new ArrayList<Bullet>();
 public void setup() 
 {
+  background(0,0,0);
   size(500,500);
-  for(int i = 0; i < STARS.length; i++){
-    STARS[i] = new Star();
+  for(int i = 0; i < leung.length; i++){
+    leung[i] = new Star();
   }
-  for(int i = 0; i < 40; i++){
-  ASTER.add(new Asteroid());
+  for(int i = 0; i < 11; i++){
+  caleb.add(new Asteroid());
   }
 }
 public void draw() 
 {
   background(0,0,0);
-  SHIP.move();
-  SHIP.show();
-  for(int i = 0; i < STARS.length; i++){
-    STARS[i].show();
+  gabe.move();
+  gabe.show();
+  for(int i = 0; i < leung.length; i++){
+    leung[i].show();
   }
-  for(int i = 0; i < ASTER.size(); i++){
-    ASTER.get(i).move();
-    ASTER.get(i).show();
-    float d = dist((float)SHIP.getX(),(float)SHIP.getY(),(float)ASTER.get(i).getAX(),(float)ASTER.get(i).getAY());
+  for(int i = 0; i < caleb.size(); i++){
+    caleb.get(i).move();
+    caleb.get(i).show();
+    float d = dist(gabe.getX(), gabe.getY(),caleb.get(i).getX(), caleb.get(i).getY());
     if(d < 20){
-      ASTER.remove(i);
-      break;
+      caleb.remove(i);
     }
-    for (int j = 0; j < PEWPEW.size(); j++) { 
-      PEWPEW.get(j).move(); 
-      PEWPEW.get(j).show(); 
-      float g = dist((float)PEWPEW.get(j).getX(), (float)PEWPEW.get(j).getY(), (float)ASTER.get(i).getAX(), (float)ASTER.get(i).getAY()); 
-      if (g < 10 ) { 
-        PEWPEW.remove(j); 
-        ASTER.remove(i); 
-        break;
-      }
-   }
+  }
+  for(int i = 0; i < dylan.size(); i++){
+    dylan.get(i).move();
+    dylan.get(i).show();
   }
   if(keyPressed){
     if(key == 'a'){
-      SHIP.turn(-8);
+      gabe.turn(-10);
     }
     if(key == 'd'){
-      SHIP.turn(8);
+      gabe.turn(10);
     }
     if(key == 'w'){
-      SHIP.accelerate(0.05);
+      gabe.accelerate(0.1);
     }
     if(key == 's'){
-      SHIP.accelerate(-0.05);
+      gabe.accelerate(-0.1);
     }
     if(key == 'e'){
-      SHIP.hyperspace();
+      gabe.hyperspace();
     }
     if(key == ' '){
-      PEWPEW.add(new Bullet(SHIP));
+      dylan.add(new Bullet(gabe));
     }
   }
 }
